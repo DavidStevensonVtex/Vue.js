@@ -1,15 +1,13 @@
 <!-- Listing 2.5 Adding ListItem.vue file in the vude-todo-list/src/components folder. -->
 
 <script lang="ts" setup>
-interface Props {
+defineProps<{
   isChecked?: boolean | false
-}
-
-const props = defineProps<Props>()
+}>()
 </script>
 <template>
-  <label :class="{ checked: props.isChecked }">
-    <input type="checkbox" :checked="props.isChecked" />
+  <label :class="{ checked: isChecked }">
+    <input type="checkbox" :checked="isChecked" />
     <slot></slot>
   </label>
 </template>
