@@ -1,21 +1,8 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<!-- Listing 2.3 Removing obsolete content in the App.vue file in the vue-todo-list/src folder. -->
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+<script setup lang="ts"></script>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<template></template>
 
 <style scoped>
 header {
