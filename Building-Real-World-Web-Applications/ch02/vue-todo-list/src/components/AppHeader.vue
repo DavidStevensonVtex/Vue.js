@@ -2,9 +2,9 @@
 
 <template>
   <header>
-    <h1><span class="icon" aria-hidden="true">✅</span></h1>
-    <p>Building Real-world Web Applications with Vue.js</p>
+    <h1><span class="icon" aria-hidden="true">✅</span>To do</h1>
   </header>
+  <p>Building Real-world Web Applications with Vue.js 3</p>
 </template>
 
 <style scoped>
