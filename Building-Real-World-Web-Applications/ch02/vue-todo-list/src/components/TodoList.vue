@@ -1,13 +1,27 @@
-<!-- Listing 2.10 Sorting the list in the TodoList.vue file in the vue-todo-list/src/components folder. -->
+<!-- Listing 2.11 Preserving changes to the list in the TodoList.vue file in the vue-todo-list/src/components folder. -->
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import ListItem from './ListItem.vue'
 
 type Item = {
   title: string
   checked?: boolean
+}
+
+const storageItems: Ref<Item[]> = ref([])
+
+const setToStorage = (items: Item[]): void => {
+  localStorage.setItem('list-items', JSON.stringify(items))
+}
+
+const getFromStorage = (): Item[] | [] => {
+  const stored = localStorage.getItem('list-items')
+  if (stored) {
+    return JSON.parse(stored)
+  }
+  return []
 }
 
 const listItems: Ref<Item[]> = ref([
