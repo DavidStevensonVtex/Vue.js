@@ -1,4 +1,4 @@
-<!-- Listing 3.2 The GetLocation.vue file in the vue-local-weather/src/components folder. -->
+<!-- Listing 3.3 The GetLocation.vue file in the vue-local-weather/src/components folder. -->
 
 <script lang="ts" setup>
 import { ref } from "vue";
@@ -10,4 +10,15 @@ type Geolocation = {
 };
 
 const coords: Ref<Geolocation | undefined> = ref();
+const geolocationBlockedByUser: Ref<boolean> = ref(false);
+
+const getGeolocation = async (): Promise<void> => {
+  await navigator.geolocation.getCurrentPosition(
+    async (position: { coords: Geolocation }) => {},
+    (error: { message: string }) => {
+      geolocationBlockedByUser.value = true;
+      console.error(error.message);
+    }
+  );
+};
 </script>
