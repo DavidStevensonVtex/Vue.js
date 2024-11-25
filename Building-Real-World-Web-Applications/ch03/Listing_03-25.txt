@@ -19,7 +19,7 @@ const windStyle = computed(() => ({
       class="inline-block"
       :style="windStyle"
       data-testid="direction"
-      >↓</span
+      >⬇</span
     >
     <span class="sr-only">Wind Direction: {{ degrees }} degrees</span>
   </span>
