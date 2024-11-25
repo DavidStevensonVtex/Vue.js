@@ -1,3 +1,5 @@
+Listing 3.23 Adding "jest" to "types" array in tsconfig.vitest.json file in the vue-local-weather folder
+
 {
     "extends": "./tsconfig.app.json",
     "exclude": [],
