@@ -1,0 +1,5 @@
+/* Listing 3.11 The contents of the style.css file configured for Tailwind CSS in the vue-local-weather/src folder. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
