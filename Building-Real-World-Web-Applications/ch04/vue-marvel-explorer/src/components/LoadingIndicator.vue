@@ -1,7 +1,7 @@
 <!-- Listing 4.11 The LoadingIndicator.vue file in the vue-marvel-explorer/src/components folder. -->
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   text?: string;
 }>();
 </script>
