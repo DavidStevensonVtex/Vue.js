@@ -10,6 +10,7 @@ import type { Comic } from "@/types/marvel";
 
 import LoadingIndicator from "./LoadingIndicator.vue";
 import ComicCard from "./ComicCard.vue";
+import Pagination from "./Pagination.vue";
 
 const route = useRoute();
 
