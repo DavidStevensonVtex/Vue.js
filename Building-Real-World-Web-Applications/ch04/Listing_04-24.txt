@@ -10,7 +10,7 @@ export const useComics = async (page: number = 0): Promise<Comics> => {
     const ITEMS_PER_PAGE = 20;
     const pagination = page ? `&offset=${page * ITEMS_PER_PAGE}` : '';
 
-    const requestURI = `${MARVEL_API}/comics?${API_SIGN}`
+    const requestURI = `${MARVEL_API}/comics?${API_SIGN}${pagination}`
 
     const res = await fetch(requestURI)
     const jsonRes = await res.json()
