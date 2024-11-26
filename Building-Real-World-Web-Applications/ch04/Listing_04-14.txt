@@ -10,7 +10,7 @@ This feature was added in TypeScript 4.2.
 2. Update TypeScript Configuration
 If your TypeScript version is up-to-date, you might need to modify your tsconfig.json 
 file to enable the necessary ECMAScript features
-(Added: "lib": ["es2020", "dom"])
+(Added: "target": "es2020", "lib": ["es2020", "dom"])
 
 {
     "extends": "@tsconfig/node22/tsconfig.json",
@@ -22,6 +22,7 @@ file to enable the necessary ECMAScript features
         "playwright.config.*"
     ],
     "compilerOptions": {
+        "target": "es2020",
         "composite": true,
         "noEmit": true,
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
