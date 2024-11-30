@@ -1,11 +1,17 @@
-<template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
-</template>
+<!-- Listing 5.2 The new App.vue file int the vue-meal-planner/src folder -->
 
-<script lang="ts" setup>
-  //
-</script>
+<script setup lang="ts"></script>
+
+<template>
+  <v-layout>
+    <v-container class="main">
+      <main>
+        <router-view />
+      </main>
+    </v-container>
+    <v-footer app>
+      <span class="text-light-green">My Meal Planner</span>
+      &nbsp;- &copy; {{ new Date().getFullYear() }}
+    </v-footer>
+  </v-layout>
+</template>
