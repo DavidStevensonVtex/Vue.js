@@ -9,5 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     CalendarDays: typeof import('./src/components/CalendarDays.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    MealPlanner: typeof import('./src/components/MealPlanner.vue')['default']
   }
 }
