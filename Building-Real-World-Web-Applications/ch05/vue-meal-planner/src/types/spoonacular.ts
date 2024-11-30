@@ -1,4 +1,4 @@
-// Listing 5.7 The spoontacular.ts file in the vue-meal-planner/src/types folder.
+// Listing 5.7 The spoonacular.ts file in the vue-meal-planner/src/types folder.
 
 export interface SearchRecipe {
     results: RecipeResults[],
