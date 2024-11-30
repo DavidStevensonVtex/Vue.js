@@ -30,6 +30,16 @@ export default [
           allowTernary: true,
         },
       ],
+      "vue/max-attributes-per-line": [
+        "error",
+        {
+          "singleline": 4, // Max attributes per line when opening tag is on a single line
+          "multiline": {
+            "max": 4,    // Max attributes per line when opening tag is on multiple lines
+            "allowFirstLine": true // Allow multiple attributes on the first line of a multiline element
+          }
+        }
+    ],
       'vue/multi-word-component-names': 'off',
     }
   }
