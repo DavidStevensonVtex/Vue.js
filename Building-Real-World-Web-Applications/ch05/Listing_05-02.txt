@@ -1,5 +1,7 @@
 <!-- Listing 5.2 The new App.vue file int the vue-meal-planner/src folder -->
 
+<script setup lang="ts"></script>
+
 <template>
   <v-layout>
     <v-container class="main">
