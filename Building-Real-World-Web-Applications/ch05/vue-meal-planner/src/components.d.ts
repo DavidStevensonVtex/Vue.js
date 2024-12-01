@@ -12,6 +12,8 @@ declare module 'vue' {
     CalendarDays: typeof import('./components/CalendarDays.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     MealPlanner: typeof import('./components/MealPlanner.vue')['default']
+    RecipeList: typeof import('./components/RecipesList.vue')['default']
+    RecipesList: typeof import('./components/RecipesList.vue')['default']
     RecipeTable: typeof import('./components/RecipeTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
