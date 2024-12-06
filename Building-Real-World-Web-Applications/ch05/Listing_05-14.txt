@@ -1,4 +1,4 @@
-<!-- Listing 5.14 The RecipeList.vue file in the vue-meal-planner/src/components folder -->
+<!-- Listing 5.14 The RecipesList.vue file in the vue-meal-planner/src/components folder -->
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
