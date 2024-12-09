@@ -103,3 +103,7 @@ We can teach the browser where to locate the vue import by using [Import Maps](h
 ##### Import Maps Browser Support
 
 Import Maps is a relatively new browser feature. Make sure to use a browser within its [support range](https://caniuse.com/import-maps). In particular, it is only supported in Safari 16.4+.
+
+#### Notes on Production Use
+
+The examples so far are using the development build of Vue - if you intend to use Vue from a CDN in production, make sure to check out the [Production Deployment Guide](https://vuejs.org/guide/best-practices/production-deployment.html#without-build-tools).
