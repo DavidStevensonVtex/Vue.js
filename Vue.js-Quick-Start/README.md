@@ -603,3 +603,89 @@ import ConditionalRendering from "./components/ConditionalRendering.vue";
   </header>
 </template>
 ```
+
+### [List Rendering](https://vuejs.org/tutorial/#step-7)
+
+We can use the v-for directive to render a list of elements based on a source array:
+
+```
+<ul>
+  <li v-for="todo in todos" :key="todo.id">
+    {{ todo.text }}
+  </li>
+</ul>
+```
+
+There are two ways to update the list:
+
+1. Call mutating methods on the source array:
+
+    `todos.value.push(newTodo)`
+
+2. Replace the array with a new one:
+
+    `todos.value = todos.value.filter(/* ... */)`
+
+More details on v-for: [Guide - List Rendering](https://vuejs.org/guide/essentials/list.html)
+
+ListingRendering.vue:
+
+```
+<!-- Listing 1.16 The ListRendering.vue file in the vue-tutorial/src/components folder -->
+
+<script setup>
+import { ref } from "vue";
+
+// give each todo a unique id
+let id = 0;
+
+const newTodo = ref("");
+const todos = ref([
+  { id: id++, text: "Learn HTML" },
+  { id: id++, text: "Learn JavaScript" },
+  { id: id++, text: "Learn Vue" },
+]);
+
+function addTodo() {
+  console.log("newTodo", newTodo.value);
+  const todo = { id: id++, text: newTodo.value };
+  todos.value.push(todo);
+  newTodo.value = "";
+}
+
+function removeTodo(todo) {
+  todos.value = todos.value.filter((t) => t.id !== todo.id);
+}
+</script>
+
+<template>
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo" required placeholder="new todo" />
+    <button>Add Todo</button>
+  </form>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">
+      {{ todo.text }}
+      <button @click="removeTodo(todo)">X</button>
+    </li>
+  </ul>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.17 The App.vue file in the vue-tutorial/src folder for Conditinal Rendering example -->
+
+<script setup>
+import ListRendering from "./components/ListRendering.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <ListRendering />
+    </div>
+  </header>
+</template>
+```
