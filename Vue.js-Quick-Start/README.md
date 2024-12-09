@@ -295,3 +295,9 @@ The goal of this tutorial is to quickly give you an experience of what it feels 
 Vue offers two API styles: Options API and Composition API.
 
 -   You can also switch between SFC-mode or HTML-mode. The former will show code examples in Single-File Component (SFC) format, which is what most developers use when they use Vue with a build step. HTML-mode shows usage without a build step.
+
+```
+<template>
+  <h1>Hello World!</h1>
+</template>
+```
