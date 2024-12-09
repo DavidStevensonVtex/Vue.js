@@ -164,6 +164,10 @@ Go with Options API if you are not using build tools, or plan to use Vue primari
 
 Go with Composition API + Single-File Components if you plan to build full applications with Vue.
 
+#### Still Got Questions?​
+
+Check out our [FAQ](https://vuejs.org/about/faq.html).
+
 ## [Quick Start](https://vuejs.org/guide/quick-start.html)
 
 -   [Playground](https://play.vuejs.org/)
