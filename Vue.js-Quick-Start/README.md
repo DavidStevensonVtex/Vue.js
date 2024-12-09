@@ -107,3 +107,13 @@ Import Maps is a relatively new browser feature. Make sure to use a browser with
 #### Notes on Production Use
 
 The examples so far are using the development build of Vue - if you intend to use Vue from a CDN in production, make sure to check out the [Production Deployment Guide](https://vuejs.org/guide/best-practices/production-deployment.html#without-build-tools).
+
+#### Splitting up the Modules
+
+As we dive deeper into the guide, we may need to split our code into separate JavaScript files so that they are easier to manage.
+
+If you directly open the above index.html in your browser, you will find that it throws an error because ES modules cannot work over the file:// protocol, which is the protocol the browser uses when you open a local file.
+
+Due to security reasons, ES modules can only work over the http:// protocol, which is what the browsers use when opening pages on the web. In order for ES modules to work on our local machine, we need to serve the index.html over the http:// protocol, with a local HTTP server.
+
+To start a local HTTP server, first make sure you have Node.js installed, then run npx serve from the command line in the same directory where your HTML file is. You can also use any other HTTP server that can serve static files with the correct MIME types.
