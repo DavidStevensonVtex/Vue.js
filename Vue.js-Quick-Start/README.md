@@ -460,3 +460,66 @@ import EventListeners from "./components/EventListeners.vue";
 </template>
 
 ```
+
+### Form Bindings
+
+Using v-bind and v-on together, we can create two-way bindings on form input elements:
+
+`<input :value="text" @input="onInput">`
+
+```
+function onInput(e) {
+  // a v-on handler receives the native DOM event
+  // as the argument.
+  text.value = e.target.value
+}
+```
+
+Try typing in the input box - you should see the text in `<p>` updating as you type.
+
+To simplify two-way bindings, Vue provides a directive, v-model, which is essentially syntactic sugar for the above:
+
+v-model automatically syncs the `<input>`'s value with the bound state, so we no longer need to use an event handler for that.
+
+v-model works not only on text inputs, but also on other input types such as checkboxes, radio buttons, and select dropdowns. We cover more details in [Guide - Form Bindings](https://vuejs.org/guide/essentials/forms.html).
+
+Now, try to refactor the code to use v-model instead.
+
+FormBindings.vue:
+
+```
+<!-- Listing 1.11 The FormBindings.vue file in the vue-tutorial/src/components folder -->
+
+<script setup>
+import { ref } from "vue";
+
+const text = ref("");
+
+function onInput(e) {
+  text.value = e.target.value;
+}
+</script>
+
+<template>
+  <input :value="text" @input="onInput" placeholder="Type here" />
+  <p>{{ text }}</p>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.12 The App.vue file in the vue-tutorial/src folder for Event Listeners example -->
+
+<script setup>
+import FormBindings from "./components/FormBindings.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <FormBindings />
+    </div>
+  </header>
+</template>
+```
