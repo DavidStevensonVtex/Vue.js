@@ -296,13 +296,15 @@ Vue offers two API styles: Options API and Composition API.
 
 -   You can also switch between SFC-mode or HTML-mode. The former will show code examples in Single-File Component (SFC) format, which is what most developers use when they use Vue with a build step. HTML-mode shows usage without a build step.
 
+#### [Hello World Example](https://vuejs.org/tutorial/#step-1)
+
 ```
 <template>
   <h1>Hello World!</h1>
 </template>
 ```
 
-### Declarative Rendering
+### [Declarative Rendering](https://vuejs.org/tutorial/#step-2)
 
 The core feature of Vue is declarative rendering: using a template syntax that extends HTML, we can describe how the HTML should look based on JavaScript state. When the state changes, the HTML updates automatically.
 
@@ -386,7 +388,7 @@ import DeclarativeRendering from "./components/DeclarativeRendering.vue";
 </template>
 ```
 
-### Attribute Bindings
+### [Attribute Bindings](https://vuejs.org/tutorial/#step-3)
 
 In Vue, mustaches are only used for text interpolation. To bind an attribute to a dynamic value, we use the v-bind directive:
 
