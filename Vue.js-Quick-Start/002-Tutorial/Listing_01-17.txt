@@ -1,4 +1,4 @@
-<!-- Listing 1.17 The App.vue file in the vue-tutorial/src folder for Conditinal Rendering example -->
+<!-- Listing 1.17 The App.vue file in the vue-tutorial/src folder for List Rendering example -->
 
 <script setup>
 import ListRendering from "./components/ListRendering.vue";
