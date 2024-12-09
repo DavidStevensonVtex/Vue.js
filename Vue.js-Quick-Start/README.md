@@ -461,7 +461,7 @@ import EventListeners from "./components/EventListeners.vue";
 
 ```
 
-### Form Bindings
+### [Form Bindings](https://vuejs.org/tutorial/#step-5)
 
 Using v-bind and v-on together, we can create two-way bindings on form input elements:
 
@@ -542,5 +542,64 @@ const text = ref("");
 <template>
   <input v-model="text" placeholder="Type here" />
   <p>{{ text }}</p>
+</template>
+```
+
+### [Conditional Rendering](https://vuejs.org/tutorial/#step-6)
+
+We can use the v-if directive to conditionally render an element:
+
+`<h1 v-if="awesome">Vue is awesome!</h1>`
+
+This `<h1>` will be rendered only if the value of awesome is truthy. If awesome changes to a falsy value, it will be removed from the DOM.
+
+We can also use v-else and v-else-if to denote other branches of the condition:
+
+```
+<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-else>Oh no 😢</h1>
+```
+
+Currently, the demo is showing both `<h1>`s at the same time, and the button does nothing. Try to add v-if and v-else directives to them, and implement the toggle() method so that we can use the button to toggle between them.
+
+More details on v-if: [Guide - Conditional Rendering](https://vuejs.org/guide/essentials/conditional.html)
+
+ConditionalRendering.vue:
+
+```
+<!-- Listing 1.14 The ConditionalRendering.vue file i the vue-tutorial/src/components folder -->
+
+<script setup>
+import { ref } from "vue";
+
+const awesome = ref(true);
+
+function toggle() {
+  awesome.value = !awesome.value;
+}
+</script>
+
+<template>
+  <button @click="toggle">Toggle</button>
+  <h1 v-if="awesome">Vue is awesome!</h1>
+  <h1 v-else>Oh no 😢</h1>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.15  The App.vue file in the vue-tutorial/src folder for Conditinal Rendering example -->
+
+<script setup>
+import ConditionalRendering from "./components/ConditionalRendering.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <ConditionalRendering />
+    </div>
+  </header>
 </template>
 ```
