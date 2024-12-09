@@ -68,6 +68,49 @@ button {
 </style>
 ```
 
+SFC is a defining feature of Vue and is the recommended way to author Vue components if your use case warrants a build setup.
+
+### API Styles
+
+Vue components can be authored in two different API styles: Options API and Composition API.
+
+With Options API, we define a component's logic using an object of options such as data, methods, and mounted. Properties defined by options are exposed on this inside functions, which points to the component instance:
+
+```
+<script>
+export default {
+  // Properties returned from data() become reactive state
+  // and will be exposed on `this`.
+  data() {
+    return {
+      count: 0
+    }
+  },
+
+  // Methods are functions that mutate state and trigger updates.
+  // They can be bound as event handlers in templates.
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+
+  // Lifecycle hooks are called at different stages
+  // of a component's lifecycle.
+  // This function will be called when the component is mounted.
+  mounted() {
+    console.log(`The initial count is ${this.count}.`)
+  }
+}
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+[Try it in the Playground](https://play.vuejs.org/#eNp9Us1O3DAQfpWR1QMIlFRqT6sUtUUc4AAIOPqAcWYTs44d2eNl0SrvzjjZZDkgpEjx/Pj7mfFe/Ov7YptQrEQVdTA9XUiHu94HghrXKlmCvXQAZQkBlSazRYikCHOyVqROTqcG4Dql4OYIQPvkaAU/p3jIv+FcugPaOjlG8y4CtYqgSxl0ggblaqBgmgYDpJ5ZMOZbHVLr67iaKYzTATt0dNQAjGZiMVKfnX3NbM0a9bu2CK33mwk592N9xNEszFssrG9Onp9aZC5DRtnJFJgIP/ZHpqF4Ph1JpOOvKpdJckDY9ZYdcARQvSQi7+CvtkZv/kixWJDi4vIAzf72B55hqMrpCl+vygVLnAuKrHFtmuI1esfrG4VLoX3XG4vhrh+HK8UyLSmUtf7tZsxRSMgTmfK6Rb35Iv8adzknxX3AiGGLUiw1UqFBVp3LV4+3uOPzUux8nSx3f1N8QJ5vyhqntv/J1Sz7U9+o9rrLT9G45ile7QhdnE1lofNecze/4ctvrB/l/ip+z6sSwwfUxv9s)
+
 ## [Quick Start](https://vuejs.org/guide/quick-start.html)
 
 -   [Playground](https://play.vuejs.org/)
