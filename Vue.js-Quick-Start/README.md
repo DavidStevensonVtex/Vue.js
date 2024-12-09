@@ -727,3 +727,71 @@ const filteredTodos = computed(() => {
 A computed property tracks other reactive state used in its computation as dependencies. It caches the result and automatically updates it when its dependencies change.
 
 Now, try to add the filteredTodos computed property and implement its computation logic! If implemented correctly, checking off a todo when hiding completed items should instantly hide it as well.
+
+### [Lifecycle and Template Refs](https://vuejs.org/tutorial/#step-9)
+
+So far, Vue has been handling all the DOM updates for us, thanks to reactivity and declarative rendering. However, inevitably there will be cases where we need to manually work with the DOM.
+
+We can request a template ref - i.e. a reference to an element in the template - using the
+[special ref attribute](https://vuejs.org/api/built-in-special-attributes.html#ref):
+
+`<p ref="pElementRef">hello</p>`
+
+To access the ref, we need to declare a ref with matching name:
+
+`const pElementRef = ref(null)`
+
+Notice the ref is initialized with null value. This is because the element doesn't exist yet when `<script setup>` is executed. The template ref is only accessible after the component is mounted.
+
+To run code after mount, we can use the onMounted() function:
+
+```
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  // component is now mounted.
+})
+```
+
+This is called a lifecycle hook - it allows us to register a callback to be called at certain times of the component's lifecycle. There are other hooks such as onUpdated and onUnmounted. Check out the
+[Lifecycle Diagram](https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram)
+for more details.
+
+LifecycleAndTemplateRefs.vue:
+
+```
+<!-- Listing 1.20 The LifecycleAndTemplateRefs.vue file in the vue-tutorial/src/components folder -->
+
+<script setup>
+import { ref, onMounted } from "vue";
+
+const pElementRef = ref(null);
+
+onMounted(() => {
+  pElementRef.value.textContent = "Goodbye";
+});
+</script>
+
+<template>
+  <p ref="pElementRef">Hello</p>
+</template>
+
+```
+
+App.vue:
+
+```
+<!-- Listing 1.21 The App.vue file in the vue-tutorial/src folder for Lifecycle and Template Refs example -->
+
+<script setup>
+import LifecycleAndTemplateRefs from "./components/LifecycleAndTemplateRefs.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <LifecycleAndTemplateRefs />
+    </div>
+  </header>
+</template>
+```
