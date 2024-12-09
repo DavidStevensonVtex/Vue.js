@@ -861,3 +861,63 @@ import ChildComponent from "./components/ChildComponent.vue";
 </template>
 
 ```
+
+### [Props](https://vuejs.org/tutorial/#step-12)
+
+A child component can accept input from the parent via props. First, it needs to declare the props it accepts:
+
+```
+<!-- ChildComp.vue -->
+<script setup>
+const props = defineProps({
+  msg: String
+})
+</script>
+```
+
+Note defineProps() is a compile-time macro and doesn't need to be imported. Once declared, the msg prop can be used in the child component's template. It can also be accessed in JavaScript via the returned object of defineProps().
+
+The parent can pass the prop to the child just like attributes. To pass a dynamic value, we can also use the v-bind syntax:
+
+```
+<ChildComp :msg="greeting" />
+```
+
+ChildComponent.vue:
+
+```
+<!-- Listing 1.26 The ChildComponent.vue file using Props in the vue-tutorial/src/components folder -->
+
+<script setup>
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  msg: String,
+});
+</script>
+
+<template>
+  <h1>{{ msg }}</h1>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.27 The App.vue file in the vue-tutorial/src folder for Child Component example -->
+
+<script setup>
+import { ref } from "vue";
+import ChildComponent from "./components/ChildComponent.vue";
+
+const greeting = ref("Hello from parent");
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <ChildComponent :msg="greeting" />
+    </div>
+  </header>
+</template>
+
+```
