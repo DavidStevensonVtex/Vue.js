@@ -814,3 +814,50 @@ watch(count, (newCount) => {
 watch() can directly watch a ref, and the callback gets fired whenever count's value changes. watch() can also watch other types of data sources - more details are covered in [Guide - Watchers](https://vuejs.org/guide/essentials/watchers.html).
 
 A more practical example than logging to the console would be fetching new data when an ID changes. The code we have is fetching todos data from a mock API on component mount. There is also a button that increments the todo ID that should be fetched. Try to implement a watcher that fetches a new todo when the button is clicked.
+
+### [Components](https://vuejs.org/tutorial/#step-11)
+
+So far, we've only been working with a single component. Real Vue applications are typically created with nested components.
+
+A parent component can render another component in its template as a child component. To use a child component, we need to first import it:
+
+```
+import ChildComp from './ChildComp.vue'
+```
+
+Then, we can use the component in the template as:
+
+```
+<ChildComp />
+```
+
+ChildComponent.vue:
+
+```
+<!-- Listing 1.24 The ChildComponent.vue file in the vue-tutorial/src/components folder -->
+
+<script setup></script>
+
+<template>
+  <h1>Hello, Child Component</h1>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.25 The App.vue file in the vue-tutorial/src folder for Child Component example -->
+
+<script setup>
+import ChildComponent from "./components/ChildComponent.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <ChildComponent />
+    </div>
+  </header>
+</template>
+
+```
