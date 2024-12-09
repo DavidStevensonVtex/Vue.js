@@ -34,6 +34,19 @@ The above example demonstrates the two core features of Vue:
 
 -   Reactivity: Vue automatically tracks JavaScript state changes and efficiently updates the DOM when changes happen.
 
+### The Progressive Framework
+
+Vue is designed to be flexible and incrementally adoptable. Depending on your use case, Vue can be used in different ways:
+
+-   Enhancing static HTML without a build step
+-   Embedding as Web Components on any page
+-   Single-Page Application (SPA)
+-   Fullstack / Server-Side Rendering (SSR)
+-   Jamstack / Static Site Generation (SSG)
+-   Targeting desktop, mobile, WebGL, and even the terminal
+
+If you are an experienced developer interested in how to best integrate Vue into your stack, or you are curious about what these terms mean, we discuss them in more detail in [Ways of Using Vue](https://vuejs.org/guide/extras/ways-of-using-vue.html).
+
 ## [Quick Start](https://vuejs.org/guide/quick-start.html)
 
 -   [Playground](https://play.vuejs.org/)
