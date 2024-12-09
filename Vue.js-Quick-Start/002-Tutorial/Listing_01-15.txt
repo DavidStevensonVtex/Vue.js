@@ -1,4 +1,4 @@
-<!-- Listing 1.15  The App.vue file in the vue-tutorial/src folder for Conditinal Rendering example -->
+<!-- Listing 1.15  The App.vue file in the vue-tutorial/src folder for Conditional Rendering example -->
 
 <script setup>
 import ConditionalRendering from "./components/ConditionalRendering.vue";
