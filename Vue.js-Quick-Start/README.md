@@ -301,3 +301,87 @@ Vue offers two API styles: Options API and Composition API.
   <h1>Hello World!</h1>
 </template>
 ```
+
+### Declarative Rendering
+
+The core feature of Vue is declarative rendering: using a template syntax that extends HTML, we can describe how the HTML should look based on JavaScript state. When the state changes, the HTML updates automatically.
+
+State that can trigger updates when changed is considered reactive. We can declare reactive state using Vue's reactive() API. Objects created from reactive() are JavaScript Proxies that work just like normal objects:
+
+```
+import { reactive } from 'vue'
+
+const counter = reactive({
+  count: 0
+})
+
+console.log(counter.count) // 0
+counter.count++
+```
+
+reactive() only works on objects (including arrays and built-in types like Map and Set). ref(), on the other hand, can take any value type and create an object that exposes the inner value under a .value property:
+
+```
+import { ref } from 'vue'
+
+const message = ref('Hello World!')
+
+console.log(message.value) // "Hello World!"
+message.value = 'Changed'
+```
+
+Details on reactive() and ref() are discussed in [Guide - Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html).
+
+Reactive state declared in the component's `<script setup>` block can be used directly in the template. This is how we can render dynamic text based on the value of the counter object and message ref, using mustaches syntax:
+
+```
+<h1>{{ message }}</h1>
+<p>Count is: {{ counter.count }}</p>
+```
+
+DeclarativeRendering.vue
+
+```
+<!-- Listing 1.5 Declarative Rendering using reactive and ref functions -->
+
+<script setup>
+import { reactive } from "vue";
+import { ref } from "vue";
+
+const counter = reactive({
+  count: 0,
+});
+
+console.log(counter.count); // 0
+counter.count++;
+
+const message = ref("Hello World!");
+
+console.log(message.value); // "Hello World!"
+message.value = "Changed";
+</script>
+
+<template>
+  <h1>{{ message }}</h1>
+  <h1>{{ message.split("").reverse().join("") }}</h1>
+  <p>Count is: {{ counter.count }}</p>
+</template>
+```
+
+App.vue
+
+```
+<!-- Listing 1.6 The App.vue file in the vue-tutorial/src folder for Declarative Rendering example -->
+
+<script setup>
+import DeclarativeRendering from "./components/DeclarativeRendering.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <DeclarativeRendering />
+    </div>
+  </header>
+</template>
+```
