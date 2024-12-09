@@ -1,4 +1,4 @@
-<!-- Listing 1.19 The App.vue file in the vue-tutorial/src folder for Conditinal Rendering example -->
+<!-- Listing 1.19 The App.vue file in the vue-tutorial/src folder for Computed Property example -->
 
 <script setup>
 import ComputedProperty from "./components/ComputedProperty.vue";
