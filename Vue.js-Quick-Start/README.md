@@ -403,3 +403,58 @@ Because v-bind is used so frequently, it has a dedicated shorthand syntax:
 ```
 <div :id="dynamicId"></div>
 ```
+
+### [Event Listeners](https://vuejs.org/tutorial/#step-4)
+
+We can listen to DOM events using the v-on directive:
+
+```
+<button v-on:click="increment">{{ count }}</button>
+```
+
+Due to its frequent use, v-on also has a shorthand syntax:
+
+```
+<button @click="increment">{{ count }}</button>
+```
+
+EventListeners.vue
+
+```
+<!-- Listing 1.9 The EventListeners.vue file in the vue-tutorial/src/components folder -->
+
+<script setup>
+import { ref } from "vue";
+
+const count = ref(0);
+
+function increment() {
+  // update component state
+  count.value++;
+}
+</script>
+
+<template>
+  <!-- make this button work -->
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.10 The App.vue file in the vue-tutorial/src folder for Event Listeners example -->
+
+<script setup>
+import EventListeners from "./components/EventListeners.vue";
+</script>
+
+<template>
+  <header>
+    <div class="wrapper">
+      <EventListeners />
+    </div>
+  </header>
+</template>
+
+```
