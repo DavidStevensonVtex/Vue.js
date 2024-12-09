@@ -921,3 +921,60 @@ const greeting = ref("Hello from parent");
 </template>
 
 ```
+
+### [Emits](https://vuejs.org/tutorial/#step-13)
+
+In addition to receiving props, a child component can also emit events to the parent:
+
+```
+<script setup>
+// declare emitted events
+const emit = defineEmits(['response'])
+
+// emit with argument
+emit('response', 'hello from child')
+</script>
+```
+
+The first argument to emit() is the event name. Any additional arguments are passed on to the event listener.
+
+The parent can listen to child-emitted events using v-on - here the handler receives the extra argument from the child emit call and assigns it to local state:
+
+```
+<ChildComp @response="(msg) => childMsg = msg" />
+```
+
+ChildComponent.vue:
+
+```
+<!-- Listing 1.28 The ChildComponent.vue file using Props in the vue-tutorial/src/components folder -->
+
+<script setup>
+const emit = defineEmits(["response"]);
+
+emit("response", "hello from child");
+</script>
+
+<template>
+  <h1>Child Component</h1>
+</template>
+```
+
+App.vue:
+
+```
+<!-- Listing 1.29 The App.vue file in the vue-tutorial/src folder for Child Component example -->
+
+<script setup>
+import { ref } from "vue";
+import ChildComponent from "./components/ChildComponent.vue";
+
+const childMsg = ref("No child msg yet");
+</script>
+
+<template>
+  <ChildComponent @response="(msg) => (childMsg = msg)" />
+  <p>{{ childMsg }}</p>
+</template>
+
+```

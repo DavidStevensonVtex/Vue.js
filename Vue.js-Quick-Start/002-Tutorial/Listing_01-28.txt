@@ -1,0 +1,11 @@
+<!-- Listing 1.28 The ChildComponent.vue file using Props in the vue-tutorial/src/components folder -->
+
+<script setup>
+const emit = defineEmits(["response"]);
+
+emit("response", "hello from child");
+</script>
+
+<template>
+  <h1>Child Component</h1>
+</template>
