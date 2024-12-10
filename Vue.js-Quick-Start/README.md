@@ -978,3 +978,27 @@ const childMsg = ref("No child msg yet");
 </template>
 
 ```
+
+### [Slots](https://vuejs.org/tutorial/#step-14)
+
+In addition to passing data via props, the parent component can also pass down template fragments to the child via slots:
+
+```
+<ChildComp>
+  This is some slot content!
+</ChildComp>
+```
+
+In the child component, it can render the slot content from the parent using the `<slot>` element as outlet:
+
+```
+<!-- in child template -->
+<slot/>
+```
+
+Content inside the <slot> outlet will be treated as "fallback" content:
+t will be displayed if the parent did not pass down any slot content:
+
+```
+<slot>Fallback content</slot>
+```
