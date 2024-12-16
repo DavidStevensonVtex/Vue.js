@@ -60,3 +60,30 @@ Here we have declared a computed property `publishedBooksMessage`. The `computed
 A computed property automatically tracks its reactive dependencies. Vue is aware that the computation of `publishedBooksMessage` depends on `author.books`, so it will update any bindings that depend on `publishedBooksMessage` when `author.books` changes.
 
 See also: [Typing Computed](https://vuejs.org/guide/essentials/computed.html)
+
+### Computed Caching vs. Methods​
+
+You may have noticed we can achieve the same result by invoking a method in the expression:
+
+```
+<p>{{ calculateBooksMessage() }}</p>
+```
+
+```
+// in component
+function calculateBooksMessage() {
+  return author.books.length > 0 ? 'Yes' : 'No'
+}
+```
+
+Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies**. A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `author.books` has not changed, multiple access to `publishedBooksMessage` will immediately return the previously computed result without having to run the getter function again.
+
+This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+
+```
+const now = computed(() => Date.now())
+```
+
+In comparison, a method invocation will always run the function whenever a re-render happens.
+
+Why do we need caching? Imagine we have an expensive computed property `list`, which requires looping through a huge array and doing a lot of computations. Then we may have other computed properties that in turn depend on `list`. Without caching, we would be executing `list`’s getter many more times than necessary! In cases where you do not want caching, use a method call instead.
