@@ -192,3 +192,33 @@ const myRef = {
 Another nice trait of refs is that unlike plain variables, you can pass refs into functions while retaining access to the latest value and the reactivity connection. This is particularly useful when refactoring complex logic into reusable code.
 
 The reactivity system is discussed in more details in the [Reactivity in Depth](https://vuejs.org/guide/extras/reactivity-in-depth.html) section.
+
+### Deep Reactivity
+
+Refs can hold any value type, including deeply nested objects, arrays, or JavaScript built-in data structures like `Map`.
+
+A ref will make its value deeply reactive. This means you can expect changes to be detected even when you mutate nested objects or arrays:
+
+```
+import { ref } from 'vue'
+
+const obj = ref({
+  nested: { count: 0 },
+  arr: ['foo', 'bar']
+})
+
+function mutateDeeply() {
+  // these will work as expected.
+  obj.value.nested.count++
+  obj.value.arr.push('baz')
+}
+```
+
+Non-primitive values are turned into reactive proxies via [reactive()](https://vuejs.org/guide/essentials/reactivity-fundamentals.html#reactive), which is discussed below.
+
+It is also possible to opt-out of deep reactivity with [shallow refs](https://vuejs.org/api/reactivity-advanced.html#shallowref). For shallow refs, only .value access is tracked for reactivity. Shallow refs can be used for optimizing performance by avoiding the observation cost of large objects, or in cases where the inner state is managed by an external library.
+
+Further reading:
+
+-   [Reduce Reactivity Overhead for Large Immutable Structures](https://vuejs.org/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
+-   [Integration with External State Systems](https://vuejs.org/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
