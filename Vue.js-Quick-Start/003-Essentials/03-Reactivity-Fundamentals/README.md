@@ -239,3 +239,31 @@ async function increment() {
   // Now the DOM is updated
 }
 ```
+
+#### reactive()
+
+There is another way to declare reactive state, with the `reactive()` API. Unlike a ref which wraps the inner value in a special object, `reactive()` makes an object itself reactive:
+
+```
+import { reactive } from 'vue'
+
+const state = reactive({ count: 0 })
+```
+
+See also: [Typing Reactive](https://vuejs.org/guide/typescript/composition-api.html#typing-reactive)
+
+Usage in template:
+
+```
+<button @click="state.count++">
+  {{ state.count }}
+</button>
+```
+
+Reactive objects are [JavaScript Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) and behave just like normal objects. The difference is that Vue is able to intercept the access and mutation of all properties of a reactive object for reactivity tracking and triggering.
+
+`reactive()` converts the object deeply: nested objects are also wrapped with
+`reactive()` when accessed. It is also called by `ref()` internally when the ref value is an object.
+Similar to shallow refs, there is also the
+[shallowReactive()](https://vuejs.org/api/reactivity-advanced.html#shallowreactive) API
+for opting-out of deep reactivity.
