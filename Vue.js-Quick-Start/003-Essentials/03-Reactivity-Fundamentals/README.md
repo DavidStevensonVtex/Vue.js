@@ -267,3 +267,38 @@ Reactive objects are [JavaScript Proxies](https://developer.mozilla.org/en-US/do
 Similar to shallow refs, there is also the
 [shallowReactive()](https://vuejs.org/api/reactivity-advanced.html#shallowreactive) API
 for opting-out of deep reactivity.
+
+#### Reactive Proxy vs. Original
+
+It is important to note that the returned value from reactive() is a Proxy of the original object, which is not equal to the original object:
+
+```
+const raw = {}
+const proxy = reactive(raw)
+
+// proxy is NOT equal to the original.
+console.log(proxy === raw) // false
+```
+
+Only the proxy is reactive - mutating the original object will not trigger updates. Therefore, the best practice when working with Vue's reactivity system is to **exclusively use the proxied versions of your state**.
+
+To ensure consistent access to the proxy, calling `reactive()` on the same object always returns the same proxy, and calling `reactive()` on an existing proxy also returns that same proxy:
+
+```
+// calling reactive() on the same object returns the same proxy
+console.log(reactive(raw) === proxy) // true
+
+// calling reactive() on a proxy returns itself
+console.log(reactive(proxy) === proxy) // true
+```
+
+This rule applies to nested objects as well. Due to deep reactivity, nested objects inside a reactive object are also proxies:
+
+```
+const proxy = reactive({})
+
+const raw = {}
+proxy.nested = raw
+
+console.log(proxy.nested === raw) // false
+```
