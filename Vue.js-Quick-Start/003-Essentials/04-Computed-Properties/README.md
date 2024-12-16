@@ -162,3 +162,14 @@ const alwaysSmall = computed({
 })
 </script>
 ```
+
+### Best Practices
+
+#### Getters should be side-effect free​
+
+It is important to remember that computed getter functions should only perform pure computation and be free of side effects. For example, **don't mutate other state, make async requests, or mutate the DOM inside a computed getter**! Think of a computed property as declaratively describing how to derive a value based on other values - its only responsibility should be computing and returning that value. Later in the guide we will discuss how we can perform side effects in reaction to state changes with
+[watchers](https://vuejs.org/guide/essentials/watchers.html).
+
+#### Avoid mutating computed value​
+
+The returned value from a computed property is derived state. Think of it as a temporary snapshot - every time the source state changes, a new snapshot is created. It does not make sense to mutate a snapshot, so a computed return value should be treated as read-only and never be mutated - instead, update the source state it depends on to trigger new computations.
