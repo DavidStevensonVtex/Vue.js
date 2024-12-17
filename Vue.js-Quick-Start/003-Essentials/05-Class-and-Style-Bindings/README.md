@@ -143,7 +143,7 @@ You can learn more about component attribute inheritance in [Fallthrough Attribu
 
 ### Binding Inline Styles
 
-### Binding to Objects
+#### Binding to Objects
 
 `:style` supports binding to JavaScript object values - it corresponds to an [HTML element's `style` property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style):
 
@@ -176,3 +176,7 @@ Again, object style binding is often used in conjunction with computed propertie
 We can bind `:style` to an array of multiple style objects. These objects will be merged and applied to the same element:
 
 `<div :style="[baseStyles, overridingStyles]"></div>`
+
+#### Auto-prefixing
+
+When you use a CSS property that requires a [vendor prefix](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `:style`, Vue will automatically add the appropriate prefix. Vue does this by checking at runtime to see which style properties are supported in the current browser. If the browser doesn't support a particular property then various prefixed variants will be tested to try to find one that is supported.
