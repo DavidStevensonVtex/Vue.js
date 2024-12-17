@@ -90,3 +90,10 @@ The difference is that an element with `v-show` will always be rendered and rema
 In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
 
 Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+
+### `v-if` with `v-for`
+
+When `v-if` and `v-for` are both used on the same element, `v-if` will be evaluated first. See the
+[list rendering guide](https://vuejs.org/guide/essentials/list.html#v-for-with-v-if) for details.
+
+Note: It's not recommended to use `v-if` and `v-for` on the same element due to implicit precedence.
