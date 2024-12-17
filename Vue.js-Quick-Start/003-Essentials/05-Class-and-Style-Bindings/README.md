@@ -140,3 +140,33 @@ Will render:
 ```
 
 You can learn more about component attribute inheritance in [Fallthrough Attributes](https://vuejs.org/guide/components/attrs.html) section.
+
+### Binding Inline Styles
+
+### Binding to Objects
+
+`:style` supports binding to JavaScript object values - it corresponds to an [HTML element's `style` property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style):
+
+```
+const activeColor = ref('red')
+const fontSize = ref(30)
+```
+
+`<div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>`
+
+Although camelCase keys are recommended, `:style` also supports kebab-cased CSS property keys (corresponds to how they are used in actual CSS) - for example:
+
+`<div :style="{ 'font-size': fontSize + 'px' }"></div>`
+
+It is often a good idea to bind to a style object directly so that the template is cleaner:
+
+```
+const styleObject = reactive({
+  color: 'red',
+  fontSize: '30px'
+})
+```
+
+`<div :style="styleObject"></div>`
+
+Again, object style binding is often used in conjunction with computed properties that return objects.
