@@ -6,7 +6,7 @@ A common need for data binding is manipulating an element's class list and inlin
 
 ### Binding HTML Classes
 
-### Binding to Objects
+#### Binding to Objects
 
 We can pass an object to `:class` (short for `v-bind:class`) to dynamically toggle classes:
 
@@ -65,7 +65,7 @@ const classObject = computed(() => ({
 
 `<div :class="classObject"></div>`
 
-### Binding to Arrays​
+#### Binding to Arrays​
 
 We can bind `:class` to an array to apply a list of classes:
 
@@ -89,3 +89,54 @@ This will always apply `errorClass`, but `activeClass` will only be applied when
 However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside the array syntax:
 
 `<div :class="[{ [activeClass]: isActive }, errorClass]"></div>`
+
+#### With Components
+
+This section assumes knowledge of [Components](https://vuejs.org/guide/essentials/component-basics.html). Feel free to skip it and come back later.
+
+When you use the `class` attribute on a component with a single root element, those classes will be added to the component's root element and merged with any existing class already on it.
+
+For example, if we have a component named `MyComponent` with the following template:
+
+```
+<!-- child component template -->
+<p class="foo bar">Hi!</p>
+```
+
+Then add some classes when using it:
+
+```
+<!-- when using the component -->
+<MyComponent class="baz boo" />
+```
+
+The rendered HTML will be:
+
+`<p class="foo bar baz boo">Hi!</p>`
+
+The same is true for class bindings:
+
+`<MyComponent :class="{ active: isActive }" />`
+
+When `isActive` is truthy, the rendered HTML will be:
+
+`<p class="foo bar active">Hi!</p>`
+
+If your component has multiple root elements, you would need to define which element will receive this class. You can do this using the `$attrs` component property:
+
+```
+<!-- MyComponent template using $attrs -->
+<p :class="$attrs.class">Hi!</p>
+<span>This is a child component</span>
+```
+
+`<MyComponent class="baz" />`
+
+Will render:
+
+```
+<p class="baz">Hi!</p>
+<span>This is a child component</span>
+```
+
+You can learn more about component attribute inheritance in [Fallthrough Attributes](https://vuejs.org/guide/components/attrs.html) section.
