@@ -58,3 +58,15 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for v-if. It
 ```
 
 Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+
+### `v-if` on `<template>`
+
+Because v-if is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+
+```
+<template v-if="ok">
+  <h1>Title</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</template>
+```
