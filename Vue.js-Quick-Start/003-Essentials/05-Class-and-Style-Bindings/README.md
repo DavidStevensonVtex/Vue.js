@@ -170,3 +170,9 @@ const styleObject = reactive({
 `<div :style="styleObject"></div>`
 
 Again, object style binding is often used in conjunction with computed properties that return objects.
+
+#### Binding to Arrays​
+
+We can bind `:style` to an array of multiple style objects. These objects will be merged and applied to the same element:
+
+`<div :style="[baseStyles, overridingStyles]"></div>`
