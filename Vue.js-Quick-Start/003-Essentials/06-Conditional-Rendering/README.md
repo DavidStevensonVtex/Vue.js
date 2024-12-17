@@ -37,3 +37,24 @@ const awesome = ref(true)
 ```
 
 A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+
+### `v-else-if`
+
+The `v-else-if`, as the name suggests, serves as an "else if block" for v-if. It can also be chained multiple times:
+
+```
+<div v-if="type === 'A'">
+  A
+</div>
+<div v-else-if="type === 'B'">
+  B
+</div>
+<div v-else-if="type === 'C'">
+  C
+</div>
+<div v-else>
+  Not A/B/C
+</div>
+```
+
+Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
