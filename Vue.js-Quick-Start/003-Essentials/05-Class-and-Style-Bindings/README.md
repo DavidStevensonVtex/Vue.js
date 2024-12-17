@@ -64,3 +64,28 @@ const classObject = computed(() => ({
 ```
 
 `<div :class="classObject"></div>`
+
+### Binding to Arrays​
+
+We can bind `:class` to an array to apply a list of classes:
+
+```
+const activeClass = ref('active')
+const errorClass = ref('text-danger')
+```
+
+`<div :class="[activeClass, errorClass]"></div>`
+
+Which will render:
+
+`<div class="active text-danger"></div>`
+
+If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+
+`<div :class="[isActive ? activeClass : '', errorClass]"></div>`
+
+This will always apply `errorClass`, but `activeClass` will only be applied when isActive is truthy.
+
+However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside the array syntax:
+
+`<div :class="[{ [activeClass]: isActive }, errorClass]"></div>`
