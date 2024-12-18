@@ -164,3 +164,29 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
   </template>
 </ul>
 ```
+
+### `v-for` with `v-if​`
+
+When they exist on the same node, `v-if` has a higher priority than `v-for`. That means the `v-if` condition will not have access to variables from the scope of the `v-for`:
+
+```
+<!--
+This will throw an error because property "todo"
+is not defined on instance.
+-->
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo.name }}
+</li>
+```
+
+This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is also more explicit):
+
+```
+<template v-for="todo in todos">
+  <li v-if="!todo.isComplete">
+    {{ todo.name }}
+  </li>
+</template>
+```
+
+Note: It's not recommended to use `v-if` and `v-for` on the same element due to implicit precedence.
