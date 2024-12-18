@@ -216,3 +216,80 @@ When using `<template v-for>`, the `key` should be placed on the `<template>` co
 It is recommended to provide a key attribute with `v-for` whenever possible, unless the iterated DOM content is simple (i.e. contains no components or stateful DOM elements), or you are intentionally relying on the default behavior for performance gains.
 
 The key binding expects primitive values - i.e. strings and numbers. Do not use objects as `v-for` keys. For detailed usage of the key attribute, please see the [`key` API documentation](https://vuejs.org/api/built-in-special-attributes#key).
+
+### `v-for` with a Component
+
+Note: This section assumes knowledge of [Components](https://vuejs.org/guide/essentials/component-basics). Feel free to skip it and come back later.
+
+You can directly use `v-for` on a component, like any normal element (don't forget to provide a `key`):
+
+`<MyComponent v-for="item in items" :key="item.id" />`
+
+However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+
+```
+<MyComponent
+  v-for="(item, index) in items"
+  :item="item"
+  :index="index"
+  :key="item.id"
+/>
+```
+
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
+Check out [**▶ this example of a simple todo list**](https://play.vuejs.org/#eNp9VF1v2jAU/StWNClBpYm67gmlVbuNSZ20rup4a/aQxhdwcezIH8CE+O+7tjFJO9YXcO65H+f43utdctt1+dpCMklK3SjWGaLB2O66EqztpDJkRxTMyZ7MlWxJiq7pEZpJKu8MtAcsL6LBZUQ3QirRSKENEbBx2Ay2hly5hFmajiJoENEH85OL2rkfQhidkItxOBtmOExI+lUSswRCmV6C9iX23mMQ8vFNyKxeAZEW62CgUbVeno67fBP3Q258CK83IkRU4jeSrgQHp2hrvFyKzD8569yKxjApSE3pfdCbjUIBrzBf19xC3lm9zAZl+0RnZ68ZDC4txHoSyID8CyGJFEkixbIIfcQO4gc2o+O1AfdlyrlULVmfSzHR9rllJu8UrEGYqyrpSVcJOjsaJa+fgRMMQhwrnjsZiN5SSmqvqSy8S/RnorMmnAmWaSUFHkIj2SqJMKOvkkYzkm1gKTkFV3SaL3LyDYD6RjT1Mb6IJZ+tMVI4SmVxODukLJzUcLRHfq7UOcMr6TkGcZlDxoQJCtsR/oWG9awmK/iDbs6aMzqw+05FxH/04I2CVq4jqnPdcdZA5ouMycUoel6XxZHYgbynjObYvGScDFfrxLJSmDMBD0p2OntKPZPUDWuwT7HXzh4YeeC/Y+L6zg43ttuFWSR7HKzBfZObBrWsUNoHwNRZTIyarh/98U03fMbXgozG7Z+zRf6ipUBFfiWqpJFtxzion53bJezBJO4ozijncvPd24yycNgWjFlCszphf9FbZ6uSBwUa1Bqbc8RMrRaA8+Tg6a97P5tHECfXula+Az6Cltw6jsHtsxUUaQ/8PNs7/1IysZjp6daA0FGUI9o/Q1WCbf3yjvSe7mWOr41/jPbJ/i+QKuHA)
+to see how to render a list of components using v-for, passing different data to each instance.
+
+```
+<script setup>
+import { ref } from 'vue'
+import TodoItem from './TodoItem.vue'
+
+const newTodoText = ref('')
+const todos = ref([
+  {
+    id: 1,
+    title: 'Do the dishes'
+  },
+  {
+    id: 2,
+    title: 'Take out the trash'
+  },
+  {
+    id: 3,
+    title: 'Mow the lawn'
+  }
+])
+
+let nextTodoId = 4
+
+function addNewTodo() {
+  todos.value.push({
+    id: nextTodoId++,
+    title: newTodoText.value
+  })
+  newTodoText.value = ''
+}
+</script>
+
+<template>
+	<form v-on:submit.prevent="addNewTodo">
+    <label for="new-todo">Add a todo</label>
+    <input
+      v-model="newTodoText"
+      id="new-todo"
+      placeholder="E.g. Feed the cat"
+    />
+    <button>Add</button>
+  </form>
+  <ul>
+    <todo-item
+      v-for="(todo, index) in todos"
+      :key="todo.id"
+      :title="todo.title"
+      @remove="todos.splice(index, 1)"
+    ></todo-item>
+  </ul>
+</template>
+```
