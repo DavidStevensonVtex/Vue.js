@@ -36,3 +36,32 @@ const counter = ref(0)
 	<p>The button above has been clicked {{ counter }} times.</p>
 </template>
 ```
+
+### Method Handlers​
+
+The logic for many event handlers will be more complex though, and likely isn't feasible with inline handlers. That's why `v-on` can also accept the name or path of a component method you'd like to call.
+
+For example:
+
+```
+const name = ref('Vue.js')
+
+function greet(event) {
+  alert(`Hello ${name.value}!`)
+  // `event` is the native DOM event
+  if (event) {
+    alert(event.target.tagName)
+  }
+}
+```
+
+```
+<!-- `greet` is the name of the method defined above -->
+<button @click="greet">Greet</button>
+```
+
+[**▶ Try it in the Playground**](https://play.vuejs.org/#eNp9Ul1LwzAU/SvXIGyCtA/6JFX8xA9wExWf8rDa3XbZ2qQkN3Uw9t+9SelUkEEhzT3nnpxzk424atuk8yjOROYKq1oCh+TbC6lV0xpLsAGLJWyhtKaBEVNHUktdGO0IdN4gnAfCePThMVm60VFAS68LUkZDZRFpjB1qOoKN1AB5jZbGswesawOHm6CQdHntcXsw416ANIVZbJiBckAL5FNIdQi302eIQGCpEv7IDsKxllBuKwxLNWH9KLuVmr8s7UNyPN4QNm2dE4YdZZ+eiC1fFrUqVudSRO9SXNyHNUt7mKlZuusTx4Icj6JUFWc3mqcY3UhRmKZV7Gjahjk4Kc4Gn1LkHP3rKdbIejwe6sUCi9U/9aVbh5oULxYd2g6l2GF90h6+e5vgmv93YGPmvmb2HvAVnal98NjTrr2es+1fvOj2Mb4Fpat3d7cm1G4IFYzG8Ua+FPw+bvZE/7F7kpwO1yK238di2eE=)
+
+A method handler automatically receives the native DOM Event object that triggers it - in the example above, we are able to access the element dispatching the event via `event.target`.
+
+See also: [**Typing Event Handlers**](https://vuejs.org/guide/typescript/composition-api.html#typing-event-handlers)
