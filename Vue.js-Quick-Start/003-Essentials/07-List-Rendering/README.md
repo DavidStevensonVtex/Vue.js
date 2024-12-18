@@ -85,3 +85,61 @@ For nested `v-for,` scoping also works similar to nested functions. Each `v-for`
 You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
 `<div v-for="item of items"></div>`
+
+### `v-for` with an Object
+
+You can also use `v-for` to iterate through the properties of an object. The iteration order will be based on the result of calling `Object.values()` on the object:
+
+```
+const myObject = reactive({
+  title: 'How to do lists in Vue',
+  author: 'Jane Doe',
+  publishedAt: '2016-04-10'
+})
+```
+
+```
+<ul>
+  <li v-for="value in myObject">
+    {{ value }}
+  </li>
+</ul>
+```
+
+You can also provide a second alias for the property's name (a.k.a. key):
+
+```
+<li v-for="(value, key) in myObject">
+  {{ key }}: {{ value }}
+</li>
+```
+
+And another for the index:
+
+```
+<li v-for="(value, key, index) in myObject">
+  {{ index }}. {{ key }}: {{ value }}
+</li>
+```
+
+[**▶ Try it in the Playground**](https://play.vuejs.org/#eNp9kstO7DAMhl/FymZAmhvnoLMYlSNxk4AFIECssimtZyZDmkSJUwZVfXeclBlYILppbP+2PzvpxKlz0zaiWIgiVF45goAU3X9pVOOsJ+jAY1mRahF6WHrbwIj1I2mkqawJBM373csGK4KTvfKgkwaAFGlcwOjKvgFZqC1oFSiAMvDMFcZJU0ZaW8+im9IgXNhPt4svrF1jfUoc+zM/+jeZH0+O5ty2P5SmmA2sTMkGYeN0SZgsKqLmP/BXaAXtZGn9iRQHbakjjuEV38fcv8btYcLYoUuRcyUBdN0Qh76fJoMz+LhIx1yDjUFazLTKnYpZblnM9hxiLCjwcpZqNd0Ea3i5eSFSVLZxSqO/c6R4eVJw4YFWilJr+3aTfeQZduev1li9/uDfhG3ySXHvMaBvUYp9jEq/Qh4rhS8fb3HL532wsXXUrP4l+IDB6pgYB9lZNDVjf9Nl2uv8RJRZPYXLLaEJu6ESaFL2WS8Fv5jzX0b/wv07Pc55fM+i/wC6Cd3v)
+
+```
+<script setup>
+import { reactive } from 'vue'
+
+const myObject = reactive({
+  title: 'How to do lists in Vue',
+  author: 'Jane Doe',
+  publishedAt: '2016-04-10'
+})
+</script>
+
+<template>
+	<ul>
+    <li v-for="(value, key, index) in myObject">
+		  {{ index }}. {{ key }}: {{ value }}
+		</li>
+  </ul>
+</template>
+```
