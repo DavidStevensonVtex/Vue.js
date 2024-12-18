@@ -160,3 +160,66 @@ The `.capture`, `.once`, and `.passive` modifiers mirror the
 The `.passive` modifier is typically used with touch event listeners for [improving performance on mobile devices](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners).
 
 TIP: Do not use `.passive` and `.prevent` together, because `.passive` already indicates to the browser that you do _not_ intend to prevent the event's default behavior, and you will likely see a warning from the browser if you do so.
+
+### Key Modifiers
+
+When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` or `@` when listening for key events:
+
+```
+<!-- only call `submit` when the `key` is `Enter` -->
+<input @keyup.enter="submit" />
+```
+
+You can directly use any valid key names exposed via [KeyboardEvent.key](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) as modifiers by converting them to kebab-case.
+
+`<input @keyup.page-down="onPageDown" />`
+
+#### Key Aliases
+
+Vue provides aliases for the most commonly used keys:
+
+-   .enter
+-   .tab
+-   .delete (captures both "Delete" and "Backspace" keys)
+-   .esc
+-   .space
+-   .up
+-   .down
+-   .left
+-   .right
+
+#### System Modifier Keys​
+
+You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
+
+-   .ctrl
+-   .alt
+-   .shift
+-   .meta
+
+For example:
+
+```
+<!-- Alt + Enter -->
+<input @keyup.alt.enter="clear" />
+
+<!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+```
+
+TIP: Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down ctrl. It won't trigger if you release the `ctrl` key alone.
+
+#### `.exact` Modifier​
+
+The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
+
+```
+<!-- this will fire even if Alt or Shift is also pressed -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- this will only fire when Ctrl and no other keys are pressed -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
+```
