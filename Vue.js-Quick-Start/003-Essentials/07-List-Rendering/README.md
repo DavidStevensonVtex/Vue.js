@@ -190,3 +190,29 @@ This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is als
 ```
 
 Note: It's not recommended to use `v-if` and `v-for` on the same element due to implicit precedence.
+
+### Maintaining State with `key`
+
+When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index.
+
+This default mode is efficient, but only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values).
+
+To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item:
+
+```
+<div v-for="item in items" :key="item.id">
+  <!-- content -->
+</div>
+```
+
+When using `<template v-for>`, the `key` should be placed on the `<template>` container:
+
+```
+<template v-for="todo in todos" :key="todo.name">
+  <li>{{ todo.name }}</li>
+</template>
+```
+
+It is recommended to provide a key attribute with `v-for` whenever possible, unless the iterated DOM content is simple (i.e. contains no components or stateful DOM elements), or you are intentionally relying on the default behavior for performance gains.
+
+The key binding expects primitive values - i.e. strings and numbers. Do not use objects as `v-for` keys. For detailed usage of the key attribute, please see the [`key` API documentation](https://vuejs.org/api/built-in-special-attributes#key).
