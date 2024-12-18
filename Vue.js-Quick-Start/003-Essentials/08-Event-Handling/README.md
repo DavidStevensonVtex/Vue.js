@@ -69,3 +69,33 @@ See also: [**Typing Event Handlers**](https://vuejs.org/guide/typescript/composi
 ### Method vs. Inline Detection​
 
 The template compiler detects method handlers by checking whether the `v-on` value string is a valid JavaScript identifier or property access path. For example, `foo`, `foo.bar` and `foo['bar']` are treated as method handlers, while `foo()` and `count++` are treated as inline handlers.
+
+### Calling Methods in Inline Handlers
+
+Instead of binding directly to a method name, we can also call methods in an inline handler. This allows us to pass the method custom arguments instead of the native event:
+
+```
+function say(message) {
+  alert(message)
+}
+```
+
+```
+<button @click="say('hello')">Say hello</button>
+<button @click="say('bye')">Say bye</button>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNp9UT1vwjAQ/SvRLRQJwdBOKEX9EEM7tFXp6MWYIwQc2/KdKRHKf6+diJQBZfO9j/N7ujM8Ozc9BoQ55KR86Tgj5OAWwmyDUVxak5Gs7yokkgWOs7MwWSY1eu4xYRph8llnj8Y4MFZOS8Y0cb4OzHHPk9KlOjwKSAtHO9TajsYCFitZZ+2UzzrlgGtdY++J7ytHPus/hQkwKWu2ZTHdkzWxXBtbgLKVK2P4T5eakYB5VyhxMib4fW8x9gEnF1ztUB1u4Hs6JUzAl0dCf0QBPcfSF8gdvVx94Cm+e7Kym6CjeoD8RrI6pIyd7CWYTYx9pWvTvlXOei5N8UPLE6OhS6kUNCmbVi8gXvh1oPp/3PvpQ+uLN4XmD/9btkk=)
+
+```
+<script setup>
+function say(message) {
+  alert(message)
+}
+</script>
+
+<template>
+	<button @click="say('hello')">Say hello</button>
+	<button @click="say('bye')">Say bye</button>
+</template>
+```
