@@ -99,3 +99,29 @@ function say(message) {
 	<button @click="say('bye')">Say bye</button>
 </template>
 ```
+
+### Accessing Event Argument in Inline Handlers​
+
+Sometimes we also need to access the original DOM event in an inline handler. You can pass it into a method using the special `$event` variable, or use an inline arrow function:
+
+```
+<!-- using $event special variable -->
+<button @click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+
+<!-- using inline arrow function -->
+<button @click="(event) => warn('Form cannot be submitted yet.', event)">
+  Submit
+</button>
+```
+
+```
+function warn(message, event) {
+  // now we have access to the native event
+  if (event) {
+    event.preventDefault()
+  }
+  alert(message)
+}
+```
