@@ -65,3 +65,7 @@ function greet(event) {
 A method handler automatically receives the native DOM Event object that triggers it - in the example above, we are able to access the element dispatching the event via `event.target`.
 
 See also: [**Typing Event Handlers**](https://vuejs.org/guide/typescript/composition-api.html#typing-event-handlers)
+
+### Method vs. Inline Detection​
+
+The template compiler detects method handlers by checking whether the `v-on` value string is a valid JavaScript identifier or property access path. For example, `foo`, `foo.bar` and `foo['bar']` are treated as method handlers, while `foo()` and `count++` are treated as inline handlers.
