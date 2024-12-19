@@ -46,3 +46,27 @@ const message = ref('')
 	<input v-model="message" placeholder="edit me" />
 </template>
 ```
+
+#### Multiline text
+
+```
+<span>Multiline message is:</span>
+<p style="white-space: pre-line;">{{ message }}</p>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNp9kslOwzAQhl9l5EtB6nKAU0krAeoBJBYBR1+iZJq6OLblmbRFUd6dcbrQA+px5l/0jZNW3Ycw3jSopiqjIprAQMhNmGtn6uAjQwsRl9DBMvoaBmIdaKdd4R0x1EiUVwiz5LkaDK61yyb7GimQgbEONmdME2cUcjd/aSwbaxye0oamkkpa7wpA/GNxptV2ZRhHohQ4hRBxlGJ3Ws3b9hTuumySaCXIuOM8Yg6bUe1LtNJwcGkFglHgytsSo+zzsoQ6gQSLkFpJWrPJsUH60nBgV0PFJAcvTTVek3fyVq12AFoVvg7GYnwLbORBtJpCryQtt9Zvn/sdxwaHx32xwuL7n/2admmn1XtEwrgR6JMmUBXyXl58vgrlmSi3NlbcF8QPJG+bxLi3PTSuFOwzX0/71H9x46ovWuwYHR2PSqDJ2fV+reQveLxw+h/uzfi2z2nXqe4X3O/TLA==)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const message = ref('')
+</script>
+
+<template>
+	<span>Multiline message is:</span>
+	<p style="white-space: pre-line;">{{ message }}</p>
+	<textarea v-model="message" placeholder="add multiple lines"></textarea>
+</template>
+```
