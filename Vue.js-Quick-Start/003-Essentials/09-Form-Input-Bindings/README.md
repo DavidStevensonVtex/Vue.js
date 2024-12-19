@@ -123,3 +123,35 @@ const checkedNames = ref([])
   <label for="mike">Mike</label>
 </template>
 ```
+
+#### Radio
+
+```
+<div>Picked: {{ picked }}</div>
+
+<input type="radio" id="one" value="One" v-model="picked" />
+<label for="one">One</label>
+
+<input type="radio" id="two" value="Two" v-model="picked" />
+<label for="two">Two</label>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNqFUr1uwjAQfhXLC61EydBOKERqK4Z2KKhl9JImF2pwbMu+BKoo796zowADopvv+7nv7uSOP1s7axvgc576wkmLzAM2NhNa1tY4ZB1zULGeVc7UbELSidBCF0Z7ZFYWeyjZIkjuJisNk3uh02RoRC2oQKityhGoYiwtZZuto2nOum70932aBCYYBKZS2wYZ/lpYCO7yUhrBmSypMBro2eaqCRTlheqhNiUoqoduBCWhE6Yq/wbFKuNGZ0aONInw/1l4CM8xazNU17Noscus6MzIcc5Kk9Md+JSjp/NVcjvbeaPp8l1oIXhhaisVuJVFSecVnG4UmMDlSpnDe8TQNTAd8eIHiv0VfOePARN87cCDa2n7E4e52wIO9PLrA470PpG0YKNIfYP8BG9UE2YcZC+NLmnsC12c9i3+H6m3G788Img/LhUGDco+6gWnP/V6Y/XzuI+zp+gTuuf9HzLx6aM=)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const picked = ref('One')
+</script>
+
+<template>
+  <div>Picked: {{ picked }}</div>
+
+	<input type="radio" id="one" value="One" v-model="picked" />
+	<label for="one">One</label>
+
+	<input type="radio" id="two" value="Two" v-model="picked" />
+  <label for="two">Two</label>
+</template>
+```
