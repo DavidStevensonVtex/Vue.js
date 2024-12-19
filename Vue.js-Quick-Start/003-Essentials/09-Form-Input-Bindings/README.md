@@ -233,3 +233,51 @@ select[multiple] {
 }
 </style>
 ```
+
+Select options can be dynamically rendered with `v-for`:
+
+```
+const selected = ref('A')
+
+const options = ref([
+  { text: 'One', value: 'A' },
+  { text: 'Two', value: 'B' },
+  { text: 'Three', value: 'C' }
+])
+```
+
+```
+<select v-model="selected">
+  <option v-for="option in options" :value="option.value">
+    {{ option.text }}
+  </option>
+</select>
+
+<div>Selected: {{ selected }}</div>
+```
+
+[**Try it in the Playground**]()
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const selected = ref('A')
+
+const options = ref([
+  { text: 'One', value: 'A' },
+  { text: 'Two', value: 'B' },
+  { text: 'Three', value: 'C' }
+])
+</script>
+
+<template>
+  <select v-model="selected">
+    <option v-for="option in options" :value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
+
+	<div>Selected: {{ selected }}</div>
+</template>
+```
