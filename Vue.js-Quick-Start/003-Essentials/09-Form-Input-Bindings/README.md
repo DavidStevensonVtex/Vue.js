@@ -158,7 +158,7 @@ const picked = ref('One')
 
 #### Select
 
-Single select:
+##### Single select
 
 ```
 <div>Selected: {{ selected }}</div>
@@ -195,3 +195,41 @@ const selected = ref('')
 Note
 
 If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.
+
+##### Multiple select (bound to array)
+
+```
+<div>Selected: {{ selected }}</div>
+
+<select v-model="selected" multiple>
+  <option>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNp9UstuwjAQ/BXLF1qJEqr2RAMSIA7toa1Kb5gDShYwdWzLdkKqKP/etUN4SIWbd3Zmdzzaio617hU50AGNbWK4dsSCy/WISZ5pZRypiIE1qcnaqIx0kNphkslESeupAhIHKRl60t1iec9kHDVzcAIWDjItVg6wIiROeTGaHzQDUlWnAXUdR77rRUhscFI8ZCoFMWS0JTJKslw4rkUzErlKO67kaBxHh9clPrmCTy9wdB02YBFHZ6axtO43LGsIi3b9klReuOep2w7IY7+vyxcm6xBAUNAudRZzWvNNb2eVxIiDgtFEZZoLMB9hv2UUs2jMMboSQu3fAuZMDt0WT7aQ/PyD72zpMUY/DVgwBTB67LmV2YBr2rP5O5T4PjYx2Vwg+0bzC6wSuffY0Ca5TNH2GS+4fQ2HwuXm285KB9K2n/JGPbMOfEbxeKY3vn6y+9R7DjrMk9Z/slzkDQ==)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const selected = ref([])
+</script>
+
+<template>
+  <div>Selected: {{ selected }}</div>
+
+  <select v-model="selected" multiple>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+</template>
+
+<style>
+select[multiple] {
+  width: 100px;
+}
+</style>
+```
