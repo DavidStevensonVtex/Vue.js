@@ -324,3 +324,12 @@ But sometimes we may want to bind the value to a dynamic property on the current
 Tip
 
 The `true-value` and `false-value` attributes don't affect the input's value attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.
+
+#### Radio
+
+```
+<input type="radio" v-model="pick" :value="first" />
+<input type="radio" v-model="pick" :value="second" />
+```
+
+`pick` will be set to the value of `first` when the first radio input is checked, and set to the value of `second` when the second one is checked.
