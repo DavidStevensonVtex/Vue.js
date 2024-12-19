@@ -281,3 +281,22 @@ const options = ref([
 	<div>Selected: {{ selected }}</div>
 </template>
 ```
+
+### Value Bindings
+
+For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+
+```
+<!-- `picked` is a string "a" when checked -->
+<input type="radio" v-model="picked" value="a" />
+
+<!-- `toggle` is either true or false -->
+<input type="checkbox" v-model="toggle" />
+
+<!-- `selected` is a string "abc" when the first option is selected -->
+<select v-model="selected">
+  <option value="abc">ABC</option>
+</select>
+```
+
+But sometimes we may want to bind the value to a dynamic property on the current active instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
