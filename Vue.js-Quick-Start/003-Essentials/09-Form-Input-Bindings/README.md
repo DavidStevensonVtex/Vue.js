@@ -155,3 +155,43 @@ const picked = ref('One')
   <label for="two">Two</label>
 </template>
 ```
+
+#### Select
+
+Single select:
+
+```
+<div>Selected: {{ selected }}</div>
+
+<select v-model="selected">
+  <option disabled value="">Please select one</option>
+  <option>A</option>
+  <option>B</option>
+  <option>C</option>
+</select>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNp9kj9vwjAQxb+K5SWtRGFoJxSQADG0Q4tKRy9pclBTx7Z8dooU5bv37PCnSIUt9+53L+9ObvnM2mETgI95jqWT1jMEH+xUaFlb4zxrmYMN69jGmZplhGZCC10ajRFVUHqo2CRCd1l2L3Q+6n3IgQoPtVWFB6oYy9EWesrWh6kxa9uzRdfRZOzHucimBmsealOBmgh+JAVPZoQY66XRrJJYfCqyaAoVgEgiVgoKhIM7MxryUU9fzk5nV/T5FX1xoVPi9AMq8tFpVT7gHulAG7kd7tBoum0bacFLU1upwL0lCxScTtD7C14oZX5ekuZdgMFRL7+g/P5H3+E+aoKvHCC4BgQ/9XzhtuD79nL9Cnv6PjXpnkERfaP5DmhUiBl7bB50RbH/cCntc3ohUm8/cLn3oPG4VAwayS7xgtOrWdxY/Rz3cfiU5oTuePcLuxffcw==)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const selected = ref('')
+</script>
+
+<template>
+  <span> Selected: {{ selected }}</span>
+
+  <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+</template>
+```
+
+Note
+
+If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.
