@@ -70,3 +70,56 @@ const message = ref('')
 	<textarea v-model="message" placeholder="add multiple lines"></textarea>
 </template>
 ```
+
+Note that interpolation inside `<textarea>` won't work. Use v-model instead.
+
+#### Checkbox
+
+Single checkbox, boolean value:
+
+```
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">{{ checked }}</label>
+```
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNp9UUFOwzAQ/MrKl4JUmgOcqrQSoB7gAAg4+pImm+Li2Ja9KUVR/s7aUQKVUG/emdnxjLYTt84tDi2KpchD6ZUjCEitW0ujGmc9QQcea+ih9raBGUtn0khTWhMIyg8sP7GCVdRckG/xUpo8G4zYggfCxumCME6UK+NaAvp2uJIibW/tUQpQ1el8uGpshXoEsWIsGyx0sUUNtfUnG+uum9L0fZ4lFS/k2RRAzAUFzl2r3WIfrOHKnTQAbGMbpzT6Z0eKe0mxhMRErtDafj0mLPabj3j67B98HzjNkh8vHgP6A0oxcVT4HdJAb96e8MjvieTCrWb1GfIVg9VtzDjI7lpTcew/upT2IR1Omd172BwJTRhLxaBR2Se9FHzM+zPVf+NeL27SnjS96H8AJxW9xA==)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const checked = ref(true)
+</script>
+
+<template>
+	<input type="checkbox" id="checkbox" v-model="checked" />
+	<label for="checkbox">{{ checked }}</label>
+</template>
+```
+
+We can also bind multiple checkboxes to the same array or [**Set**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) value:
+
+In this case, the checkedNames array will always contain the values from the currently checked boxes.
+
+[**Try it in the Playground**](https://play.vuejs.org/#eNqVUk9PwjAU/ypNL2iC7KAnMpYo4SCJaNSb9TC2BxS6tmm7iVn23X3txsDEELn19ffn/V7eq+m91qOqBDqmsc0M145YcKVOmOSFVsaRmhhYkYasjCrIAKkDJpnMlLSOZBvIdpAv0gIsmXji1cfnNZNx1HqhCxYOCi1SB1gREue8SqatjkgvHJO6/u3UNHHkaV6NCi516Yj71jBhNBCXas8o4TnW2zTb4btKRenheVfeFCoHceB3xghEbQiRLkGQlTK9Q+KVcRQAz/lHZ7WRp5278pLOQZJ45UWdC76Dk85PXXlB59Yh8cpj5zjqN0WH1Fnc8YqvR1urJJ5H7U3QWxWaCzDP2nG8AUZxfR7xWCqE+pqHP2dKGB7+Q54//rcWRxrj48WABVNhpB5zqVmDa+HZ2wL2+O5BHLQUyD4DvoJVovQZW9pDKXOMfcILaR/DkXO5frezvQNpD0P5oJ7ZBD6jePjTM6Mf496O7oKOyYY2P+kZIRk=)
+
+```
+<script setup>
+import { ref } from 'vue'
+
+const checkedNames = ref([])
+</script>
+
+<template>
+  <div>Checked names: {{ checkedNames }}</div>
+
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+  <label for="jack">Jack</label>
+
+  <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+  <label for="john">John</label>
+
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+  <label for="mike">Mike</label>
+</template>
+```
