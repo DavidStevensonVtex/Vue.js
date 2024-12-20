@@ -77,3 +77,53 @@ watch(question, async (newQuestion, oldQuestion) => {
   <p>{{ answer }}</p>
 </template>
 ```
+
+#### Watch Source Types​
+
+`watch`'s first argument can be different types of reactive "sources": it can be a ref (including computed refs), a reactive object, a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description), or an array of multiple sources:
+
+```
+const x = ref(0)
+const y = ref(0)
+
+// single ref
+watch(x, (newX) => {
+  console.log(`x is ${newX}`)
+})
+
+// getter
+watch(
+  () => x.value + y.value,
+  (sum) => {
+    console.log(`sum of x + y is: ${sum}`)
+  }
+)
+
+// array of multiple sources
+watch([x, () => y.value], ([newX, newY]) => {
+  console.log(`x is ${newX} and y is ${newY}`)
+})
+```
+
+Do note that you can't watch a property of a reactive object like this:
+
+```
+const obj = reactive({ count: 0 })
+
+// this won't work because we are passing a number to watch()
+watch(obj.count, (count) => {
+  console.log(`Count is: ${count}`)
+})
+```
+
+Instead, use a getter:
+
+```
+// instead, use a getter:
+watch(
+  () => obj.count,
+  (count) => {
+    console.log(`Count is: ${count}`)
+  }
+)
+```
