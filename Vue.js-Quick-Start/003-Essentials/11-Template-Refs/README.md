@@ -104,3 +104,11 @@ onMounted(() => {
   </ul>
 </template>
 ```
+
+### Function Refs
+
+Instead of a string key, the r`ef attribute can also be bound to a function, which will be called on each component update and gives you full flexibility on where to store the element reference. The function receives the element reference as the first argument:
+
+`<input :ref="(el) => { /* assign el to a property or ref */ }">`
+
+Note we are using a dynamic `:ref` binding so we can pass it a function instead of a ref name string. When the element is unmounted, the argument will be `null`. You can, of course, use a method instead of an inline function.
