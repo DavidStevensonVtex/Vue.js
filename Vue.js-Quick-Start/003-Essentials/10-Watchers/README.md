@@ -189,3 +189,19 @@ watch(
   { immediate: true }
 )
 ```
+
+### Once Watchers​
+
+Only supported in 3.4+
+
+Watcher's callback will execute whenever the watched source changes. If you want the callback to trigger only once when the source changes, use the `once: true` option.
+
+```
+watch(
+  source,
+  (newValue, oldValue) => {
+    // when `source` changes, triggers only once
+  },
+  { once: true }
+)
+```
