@@ -173,3 +173,19 @@ In Vue 3.5+, the `deep` option can also be a number indicating the max traversal
 Use with Caution
 
 Deep watch requires traversing all nested properties in the watched object, and can be expensive when used on large data structures. Use it only when necessary and beware of the performance implications.
+
+### Eager Watchers​
+
+`watch` is lazy by default: the callback won't be called until the watched source has changed. But in some cases we may want the same callback logic to be run eagerly - for example, we may want to fetch some initial data, and then re-fetch the data whenever relevant state changes.
+
+We can force a watcher's callback to be executed immediately by passing the `immediate: true` option:
+
+```
+watch(
+  source,
+  (newValue, oldValue) => {
+    // executed immediately, then again when `source` changes
+  },
+  { immediate: true }
+)
+```
